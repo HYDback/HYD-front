@@ -1,0 +1,19 @@
+.login-container {
+  width: 80%;
+  height: 560px;
+  border-radius: 25px;
+  box-shadow: 0 0 11px 0 rgba(0, 0, 0, 0.16);
+  background-color: #FFFFFF;
+  z-index: 1;
+
+  & img {
+    width: 80%;
+    height: 120px;
+  }
+}
+
+@media(min-width:768px) {
+  .login-container{
+    width: 370px;
+  }
+}

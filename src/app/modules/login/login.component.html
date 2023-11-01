@@ -1,0 +1,23 @@
+<div class="flex justify-content-center align-items-center h-screen bg-primary-hyd opacity-60">
+  <div class="login-container">
+    <div class="flex justify-content-center align-items-center col-12 mt-4">
+      <img src="assets/logo-hogar.png" alt="logo-hogar">
+    </div>
+    <form [formGroup]="loginForm" class="text-center mt-8">
+      <span class="p-input-icon-right">
+        <i class="pi pi-user"></i>
+        <input type="text" pInputText formControlName="nick_usu" placeholder="Usuario"/>
+      </span>
+      <span class="p-input-icon-right mt-4">
+        <i [ngClass]="showPassword ? 'pi pi-eye' : 'pi pi-eye-slash'" (click)="togglePassword()"></i>
+        <input [type]="showPassword ? 'text' : 'password'" pInputText formControlName="contra_usu" placeholder="Contraseña"/>
+      </span>
+      <div class="mt-6">
+        <button class="btn-general" [ngClass]="loginForm.invalid ? 'opacity-60' : ''" (click)="login()" [disabled]="loginForm.invalid"><span class="font-bold">Iniciar Sesión</span></button>
+      </div>
+      <div class="mt-6" *ngIf="credentialsInvalid">
+        <span>Usuario y/o contraseña invalidos</span>
+      </div>
+    </form>
+  </div>
+</div>

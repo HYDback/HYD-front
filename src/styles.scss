@@ -1,0 +1,35 @@
+@import "primeicons/primeicons.css";
+@import url('styles/font/font.scss');
+@import url('styles/colors/colors.scss');
+@import url('styles/buttons/buttons.scss');
+
+:root {
+  --color-primary-hyd: #d641a9;
+  --color-primary-dark-hyd: #a71a7c;
+  --color-1: #FFFFFF;
+
+  --font-size-1: 10px;
+  --font-size-2: 11px;
+  --font-size-3: 12px;
+  --font-size-4: 13px;
+  --font-size-5: 14px;
+  --font-size-6: 16px;
+  --font-size-7: 18px;
+
+  --shadow-1: 0px 3px 6px;
+  --shadow-2: 0px 3px 8px;
+  --border-radius-1: 5px;
+  --border-radius-2: 10px;
+  --border-radius-3: 15px;
+  --border-radius-4: 20px;
+  --font-family-1: 'Roboto';
+  --animation-1: 200ms;
+}
+
+body {
+  font-family: var(--font-family-1) !important;
+  background-color: #FFFFFF;
+  height: 100vh;
+  margin: 0;
+  padding: 0;
+}
