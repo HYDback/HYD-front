@@ -2,7 +2,6 @@ import { Component, OnInit } from '@angular/core';
 import { AuthApiService } from './services/auth.service';
 import { Router } from '@angular/router';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { Observable, map, of } from 'rxjs';
 
 @Component({
   selector: 'app-login',
@@ -57,13 +56,5 @@ export class LoginComponent implements OnInit{
         console.log(error.error.Resp.message)
       }
     })
-     // Simular almacenamiento de token
-    /* const authenticated = this.authService.login(this.username, this.password);
-    console.log(authenticated);
-    if (authenticated) {
-      this.router.navigate(["menu"])
-    } else {
-      this.error = true;
-    } */
   }
 }
