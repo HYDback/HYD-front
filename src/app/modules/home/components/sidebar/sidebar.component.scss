@@ -1,0 +1,21 @@
+.sidebar {
+  height: 100vh;
+  transition: 0.2s;
+
+  &.minimized {
+    width: var(--minimized);
+  }
+
+  &.expanded {
+    width: var(--expanded);
+  }
+}
+
+.sidebar-button {
+  transition: 0.2s;
+
+  &:hover {
+    background-color: var(--color-primary-dark-hyd) !important;
+  }
+
+}

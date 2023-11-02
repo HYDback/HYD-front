@@ -35,7 +35,7 @@ export class LoginComponent implements OnInit{
     }
     this.authApiService.verifyToken(token).subscribe({
       next: (data) => {
-        this.router.navigate(['home'])
+        this.router.navigate(['home/dashboard'])
       }
     })
   }
@@ -49,7 +49,7 @@ export class LoginComponent implements OnInit{
       next: (data) => {
         this.credentialsInvalid = false;
         sessionStorage.setItem('token', data.Resp.data.token);
-        this.router.navigate(['home']);
+        this.router.navigate(['home/dashboard']);
       },
       error: (error) => {
         this.credentialsInvalid = true;

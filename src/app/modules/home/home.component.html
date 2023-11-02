@@ -1,4 +1,8 @@
-<div>
-  <h1>Menu principal</h1>
-  <button class="btn-general" (click)="logout()"><span class="font-bold">Cerrar Sesión</span></button>
+<div class="w-full">
+  <div class="home-container flex">
+    <app-sidebar></app-sidebar>
+    <div class="content">
+      <router-outlet></router-outlet>
+    </div>
+  </div>
 </div>

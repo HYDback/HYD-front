@@ -4,6 +4,7 @@
 @import url('styles/buttons/buttons.scss');
 
 :root {
+  --color-primary-light-hyd: #ee69c6;
   --color-primary-hyd: #d641a9;
   --color-primary-dark-hyd: #a71a7c;
   --color-1: #FFFFFF;
@@ -22,8 +23,12 @@
   --border-radius-2: 10px;
   --border-radius-3: 15px;
   --border-radius-4: 20px;
-  --font-family-1: 'Roboto';
+  --font-family-1: "Inter var", sans-serif;
   --animation-1: 200ms;
+
+  --top-navbar: 56px;
+  --minimized: 60px;
+  --expanded: 200px;
 }
 
 body {
