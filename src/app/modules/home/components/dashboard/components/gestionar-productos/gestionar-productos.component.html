@@ -1,7 +1,7 @@
 <div class="w-full px-4">
   <div class="w-full shadow-4 border-round-xl mt-4">
     <div class="w-full header bg-primary-hyd py-3 border-round-top-xl color-blanco flex justify-content-between px-4">
-      <span class="text-4xl font-bold">Gestionar Categorias</span>
+      <span class="text-4xl font-bold">Gestionar Productos</span>
       <i class="pi pi-plus text-4xl cursor-pointer" (click)="showModalCrear()"></i>
     </div>
     <div class="px-4 mt-4">
@@ -19,15 +19,20 @@
             <p-dropdown id="estado" formControlName="estado" [options]="estados" optionLabel="label" optionValue="label"
               placeholder="Seleccione"></p-dropdown>
           </div>
+          <div>
+            <label for="categoria" class="mr-2">Categoria</label>
+            <p-dropdown id="categoria" formControlName="categoria_id" [options]="categorias" optionLabel="nombre" optionValue="id"
+              placeholder="Seleccione"></p-dropdown>
+          </div>
         </div>
         <div class="flex col-6 gap-4 justify-content-end">
           <button class="btn-filtros" (click)="filterForm.reset()"><span class="font-bold">Limpiar
               filtros</span></button>
-          <button class="btn-filtros" (click)="filterCategoria()"><span class="font-bold">Filtrar</span></button>
+          <button class="btn-filtros" (click)="filterProducto()"><span class="font-bold">Filtrar</span></button>
         </div>
       </form>
       <div class="my-4 w-full">
-        <p-table [value]="categorias" [paginator]="true" [rows]="10" [showCurrentPageReport]="true"
+        <p-table [value]="productos" [paginator]="true" [rows]="10" [showCurrentPageReport]="true"
           [tableStyle]="{ 'min-width': '50rem' }"  [style]="{width:'100%'}"
           currentPageReportTemplate="Mostrando {first} - {last} de {totalRecords}"
           [rowsPerPageOptions]="[10, 25, 50]">
@@ -35,16 +40,25 @@
             <tr>
               <th scope="col">Nombre</th>
               <th scope="col">Descripción</th>
+              <th scope="col">Cantidad</th>
               <th scope="col">Estado</th>
+              <th scope="col">Categoria</th>
               <th scope="col">Acciones</th>
             </tr>
           </ng-template>
-          <ng-template pTemplate="body" let-categoria>
+          <ng-template pTemplate="body" let-producto>
             <tr>
-              <td>{{ categoria.nombre }}</td>
-              <td [style.width]="'45%'">{{ categoria.descripcion }}</td>
-              <td>{{ categoria.estado }}</td>
-              <td><i class="pi pi-eye text-xl cursor-pointer" [ngClass]="categoria.estado == 'ACTIVO' ? 'color-verde' : 'color-rojo'" (click)="updateCategoria(categoria)"></i></td>
+              <td>{{ producto.nombre }}</td>
+              <td [style.width]="'45%'">{{ producto.descripcion }}</td>
+              <td>{{ producto.cantidad }}</td>
+              <td>{{ producto.estado }}</td>
+              <td>{{ producto.categoria_nombre }}</td>
+              <td><i class="pi pi-eye text-xl cursor-pointer" [ngClass]="producto.estado == 'ACTIVO' ? 'color-verde' : 'color-rojo'" (click)="updateProducto(producto)"></i></td>
+            </tr>
+          </ng-template>
+          <ng-template pTemplate="emptymessage">
+            <tr *ngIf="hasFirstFilter">
+              <td [attr.colspan]="6">No hay registros</td>
             </tr>
           </ng-template>
         </p-table>
@@ -54,9 +68,9 @@
 </div>
 
 
-<p-dialog header="Nueva categoria" [(visible)]="showModal" [modal]="true" [style]="{ width: '40vw', padding: '0px' }" [draggable]="false"
+<p-dialog header="Nuevo producto" [(visible)]="showModal" [modal]="true" [style]="{ width: '40vw', padding: '0px' }" [draggable]="false"
   [resizable]="false">
-  <form [formGroup]="categoriaForm" class="grid w-full mt-2" errorTailor>
+  <form [formGroup]="productoForm" class="grid w-full mt-2" errorTailor>
     <div class="w-full px-4">
       <div class="mt-2">
         <label for="nombreModal" class="pb-2">Nombre</label>
@@ -67,11 +81,19 @@
         <textarea id="descripcionModal" rows="5" cols="30" pInputTextarea formControlName="descripcion" class="w-full"></textarea>
       </div>
       <div class="mt-4">
+        <label for="cantidadModal" class="pb-2">Cantidad</label>
+        <input id="cantidadModal" type="text" pInputText pKeyFilter="money" formControlName="cantidad" class="w-full" />
+      </div>
+      <div class="mt-4">
         <label for="estadoModal" class="mb-2">Estado</label>
         <p-dropdown id="estadoModal" formControlName="estado" [options]="estados" optionLabel="label" optionValue="label" styleClass="w-full" [autoDisplayFirst]="false" appendTo="body"></p-dropdown>
       </div>
+      <div class="mt-4">
+        <label for="categoriaModal" class="mb-2">Categoria</label>
+        <p-dropdown id="categoriaModal" formControlName="categoria_id" [options]="categorias" optionLabel="nombre" optionValue="id" styleClass="w-full" [autoDisplayFirst]="false" appendTo="body"></p-dropdown>
+      </div>
       <div class="mt-4 w-full text-center">
-        <button class="btn-filtros p-2" [ngClass]="categoriaForm.invalid ? 'opacity-60' : ''" (click)="saveCategoria()" [disabled]="categoriaForm.invalid"><span class="font-bold">Registrar</span></button>
+        <button class="btn-filtros px-4 py-2" [ngClass]="productoForm.invalid ? 'opacity-60' : ''" (click)="saveProducto()" [disabled]="productoForm.invalid"><span class="font-bold">Registrar</span></button>
       </div>
     </div>
   </form>
@@ -84,3 +106,4 @@
     <button type="button" pButton icon="pi pi-check" label="Confirmar" (click)="cd.accept()"></button>
 </ng-template>
 </p-confirmDialog>
+

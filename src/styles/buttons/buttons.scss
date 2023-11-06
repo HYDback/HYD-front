@@ -11,3 +11,16 @@
     background-color: var(--color-primary-dark-hyd);
   }
 }
+.btn-filtros{
+  cursor: pointer;
+  color: #ffffff;
+  background-color: var(--color-secondary-hyd);
+  border: 1px solid var(--color-secondary-dark-hyd);
+  padding: 0.05rem 1.55rem;
+  font-size: 0.9rem;
+  transition: background-color 0.2s, color 0.2s, border-color 0.2s, box-shadow 0.2s;
+  border-radius: 15px;
+  &:hover {
+    background-color: var(--color-secondary-dark-hyd);
+  }
+}

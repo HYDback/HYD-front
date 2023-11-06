@@ -13,4 +13,7 @@ export class RouterConstant {
 
   /** Router para el componente de Gestionar Categorias */
   public static readonly ROUTER_CATEGORIES: string = 'categories';
+
+  /** Router para el componente de Gestionar Categorias */
+  public static readonly ROUTER_PRODUCTS: string = 'products';
 }

@@ -1,18 +1,18 @@
 <div [ngClass]="isExpanded ? 'expanded' : 'minimized'" class="bg-primary-light-hyd sidebar">
   <div class="pt-2 pl-2">
-    <i class="pi pi-align-justify text-5xl color-white cursor-pointer	" (click)="toggleSidebar()"></i>
+    <i class="pi pi-align-justify text-5xl color-blanco cursor-pointer	" (click)="toggleSidebar()"></i>
   </div>
   <div class="mt-4 text-center" *ngIf="showButtons">
     <h2>Bienvenido Usuario</h2>
     <span (click)="logout()" class="cursor-pointer font-bold">Cerrar sesion</span>
   </div>
   <div class="mt-8">
-    <div class="color-white" (click)="showButtons ? button?.expand() : null" *ngFor="let button of buttons">
-      <div class="bg-primary-hyd sidebar-button color-white p-2 cursor-pointer" (click)="(showButtons && button.childrens.length == 0) ? goTo(button.path) : null">
+    <div class="color-blanco" (click)="showButtons ? button?.expand() : null" *ngFor="let button of buttons">
+      <div class="bg-primary-hyd sidebar-button color-blanco p-2 cursor-pointer" (click)="(showButtons && button.childrens.length == 0) ? goTo(button.path) : null">
         <i [ngClass]="showButtons ? '' : 'pl-2'" [class]="button.icon" class="text-xl"></i>
         <span *ngIf="showButtons" class="text-lg font-bold pl-2">{{button.label}} <i class="pi pi-angle-down" *ngIf="button.childrens.length > 0"></i></span>
       </div>
-      <div class="pl-4 bg-primary-hyd sidebar-button color-white p-2 cursor-pointer" [ngClass]="button.expanded ? '' : 'hidden'" *ngFor="let subButton of button.childrens" (click)="goTo(subButton.path)">
+      <div class="pl-4 bg-primary-hyd sidebar-button color-blanco p-2 cursor-pointer" [ngClass]="button.expanded ? '' : 'hidden'" *ngFor="let subButton of button.childrens" (click)="goTo(subButton.path)">
         <i [class]="subButton.icon"></i>
         <span *ngIf="showButtons" class="text-lg font-bold pl-2">{{subButton.label}}</span>
       </div>

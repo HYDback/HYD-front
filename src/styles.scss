@@ -2,11 +2,18 @@
 @import url('styles/font/font.scss');
 @import url('styles/colors/colors.scss');
 @import url('styles/buttons/buttons.scss');
+@import url('styles/modals/modal.scss');
 
 :root {
   --color-primary-light-hyd: #ee69c6;
   --color-primary-hyd: #d641a9;
   --color-primary-dark-hyd: #a71a7c;
+  --color-secondary-light-hyd: #3495f0;
+  --color-secondary-hyd: #047DF0;
+  --color-secondary-dark-hyd: #0670d4;
+  --color-tertiary-light-hyd: #f0737f;
+  --color-tertiary-hyd: #E35966;
+  --color-tertiary-dark-hyd: #d14250;
   --color-1: #FFFFFF;
 
   --font-size-1: 10px;

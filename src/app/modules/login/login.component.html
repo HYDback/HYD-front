@@ -6,11 +6,11 @@
     <form [formGroup]="loginForm" class="text-center mt-8">
       <span class="p-input-icon-right">
         <i class="pi pi-user"></i>
-        <input type="text" pInputText formControlName="nick_usu" placeholder="Usuario"/>
+        <input type="text" pInputText formControlName="nick" placeholder="Usuario"/>
       </span>
       <span class="p-input-icon-right mt-4">
         <i class="cursor-pointer" [ngClass]="showPassword ? 'pi pi-eye' : 'pi pi-eye-slash'" (click)="togglePassword()"></i>
-        <input [type]="showPassword ? 'text' : 'password'" pInputText formControlName="contra_usu" placeholder="Contraseña"/>
+        <input [type]="showPassword ? 'text' : 'password'" pInputText formControlName="contra" placeholder="Contraseña"/>
       </span>
       <div class="mt-6">
         <button class="btn-general" [ngClass]="loginForm.invalid ? 'opacity-60' : ''" (click)="login()" [disabled]="loginForm.invalid"><span class="font-bold">Iniciar Sesión</span></button>

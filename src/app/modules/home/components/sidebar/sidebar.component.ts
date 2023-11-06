@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, EventEmitter, Output } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 
 @Component({
@@ -8,7 +8,7 @@ import { ActivatedRoute, Router } from '@angular/router';
 })
 export class SidebarComponent {
   constructor(private router: Router, private route: ActivatedRoute){}
-
+  @Output() state = new EventEmitter();
   public isExpanded = false;
   public showButtons = false;
   public buttons = [
@@ -23,29 +23,45 @@ export class SidebarComponent {
       childrens: [
         {
           path: 'categories',
-          label: 'Categorias',
+          label: 'Gestionar Categorias',
           icon: 'pi pi-chart-bar',
         },
         {
           path: 'products',
-          label: 'Productos',
-          icon: 'pi pi-cloud',
+          label: 'Gestionar Productos',
+          icon: 'pi pi-table',
+        },
+        {
+          path: 'clients',
+          label: 'Gestionar Clientes',
+          icon: 'pi pi-user',
         }
       ]
     },
     {
-      path: 'config',
-      label: 'Inventario 2',
+      path: '',
+      label: 'Operaciones',
       icon: 'pi pi-briefcase',
       expanded: false,
       expand: function (){
         this.expanded = !this.expanded;
       },
-      childrens: []
+      childrens: [
+        {
+          path: '',
+          label: 'Gestionar Ingresos',
+          icon: 'pi pi-sort-amount-up',
+        },
+        {
+          path: '',
+          label: 'Gestionar Egresos',
+          icon: 'pi pi-sort-amount-down',
+        }
+      ]
     },
     {
       path: '',
-      label: 'Inventario 3',
+      label: 'Reportes',
       icon: 'pi pi-cog',
       expanded: false,
       expand: function (){
@@ -54,14 +70,9 @@ export class SidebarComponent {
       childrens: [
         {
           path: '',
-          label: 'Categorias',
-          icon: 'pi pi-box',
+          label: 'Generar reportes',
+          icon: 'pi pi-chart-line',
         },
-        {
-          path: '',
-          label: 'Productos',
-          icon: 'pi pi-box',
-        }
       ]
     }
   ]
@@ -75,6 +86,7 @@ export class SidebarComponent {
         return button;
       })
     }
+    this.state.emit(this.isExpanded);
   }
 
   logout(): void {
@@ -84,7 +96,7 @@ export class SidebarComponent {
 
   goTo(path: string){
     this.toggleSidebar();
-    this.router.navigate([`${this.router.url}/${path}`])
+    this.router.navigate([`home/dashboard/${path}`])
   }
 
 }

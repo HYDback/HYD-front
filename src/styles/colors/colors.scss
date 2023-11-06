@@ -7,7 +7,33 @@
 .bg-primary-dark-hyd{
   background-color: var(--color-primary-dark-hyd) !important;
 }
+.bg-secondary-hyd{
+  background-color: var(--color-secondary-hyd) !important;
+}
+.bg-secondary-light-hyd{
+  background-color: var(--color-secondary-light-hyd) !important;
+}
+.bg-secondary-dark-hyd{
+  background-color: var(--color-secondary-dark-hyd) !important;
+}
+.bg-tertiary-hyd{
+  background-color: var(--color-tertiary-hyd) !important;
+}
+.bg-tertiary-light-hyd{
+  background-color: var(--color-tertiary-light-hyd) !important;
+}
+.bg-tertiary-dark-hyd{
+  background-color: var(--color-tertiary-dark-hyd) !important;
+}
 
-.color-white{
+.color-blanco{
   color: #FFFFFF;
+}
+
+.color-verde{
+  color: rgb(3, 168, 3);
+}
+
+.color-rojo{
+  color: rgb(223, 59, 59);
 }

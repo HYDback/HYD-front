@@ -1,0 +1,20 @@
+.p-dialog .p-dialog-header{
+  display: flex;
+  justify-content: space-between;
+  background-color: var(--color-secondary-dark-hyd);
+  padding: 1rem;
+  color: #FFFFFF;
+  width: 100%;
+  border-top-right-radius: 6px;
+  border-top-left-radius: 6px;
+}
+
+.p-dialog .p-dialog-header-icons button {
+  color: #FFFFFF;
+}
+
+.p-confirm-dialog .p-dialog-content {
+  padding-top: 1.5rem;
+  justify-content: center;
+  align-items: center;
+}
