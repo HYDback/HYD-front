@@ -13,12 +13,13 @@ export class SidebarComponent {
   public showButtons = false;
   public buttons = [
     {
+      id: 1,
       path: '',
       label: 'Inventario',
       icon: 'pi pi-box',
       expanded: false,
-      expand: function (){
-        this.expanded = !this.expanded;
+      expand: () => {
+        this.toggleSubmenu(1)
       },
       childrens: [
         {
@@ -39,12 +40,13 @@ export class SidebarComponent {
       ]
     },
     {
+      id: 2,
       path: '',
       label: 'Operaciones',
       icon: 'pi pi-briefcase',
       expanded: false,
-      expand: function (){
-        this.expanded = !this.expanded;
+      expand: () => {
+        this.toggleSubmenu(2)
       },
       childrens: [
         {
@@ -60,12 +62,13 @@ export class SidebarComponent {
       ]
     },
     {
+      id: 3,
       path: '',
       label: 'Reportes',
       icon: 'pi pi-cog',
       expanded: false,
-      expand: function (){
-        this.expanded = !this.expanded;
+      expand: () => {
+        this.toggleSubmenu(3)
       },
       childrens: [
         {
@@ -97,6 +100,16 @@ export class SidebarComponent {
   goTo(path: string){
     this.toggleSidebar();
     this.router.navigate([`home/dashboard/${path}`])
+  }
+
+  toggleSubmenu(id: number){
+    this.buttons.forEach((item, index) => {
+      if((index+1)==id){
+        item.expanded = !item.expanded;
+      }else{
+        item.expanded = false;
+      }
+    })
   }
 
 }
