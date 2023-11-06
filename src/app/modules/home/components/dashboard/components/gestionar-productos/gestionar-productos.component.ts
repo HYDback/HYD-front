@@ -84,7 +84,6 @@ export class GestionarProductosComponent {
   }
 
   saveProducto(): void {
-    alert('hola')
     this.confirmationService.confirm({
       message: '¿Está seguro que desea crear el producto?',
       header: 'Confirmación',
