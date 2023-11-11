@@ -1,0 +1,161 @@
+<div class="w-full px-4">
+  <div class="w-full shadow-4 border-round-xl mt-4">
+    <div class="w-full header bg-primary-hyd py-3 border-round-top-xl color-blanco flex justify-content-between px-4">
+      <span class="text-4xl font-bold">Gestionar Ingresos</span>
+      <i class="pi pi-plus text-4xl cursor-pointer" (click)="showModalCrear()"></i>
+    </div>
+    <div class="px-4 mt-4">
+      <div class="flex justify-content-between">
+        <span class="text-xl font-bold">Filtros</span>
+      </div>
+      <form [formGroup]="filterForm" class="grid grid-nogutter mt-4 col-12">
+        <div class="flex col-6 gap-4">
+          <div>
+            <label for="dateIni" class="mr-2">Fecha inicio</label>
+            <p-calendar id="dateIni" formControlName="dateIni"></p-calendar>
+          </div>
+          <div>
+            <label for="dateFin" class="mr-2">Fecha fin</label>
+            <p-calendar id="dateFin" formControlName="dateFin"></p-calendar>
+          </div>
+          <div>
+            <label for="producto_id" class="mr-2">Producto</label>
+            <p-dropdown id="producto_id" formControlName="producto_id" [options]="productosAux" optionLabel="nombre" optionValue="id" [filter]="true" filterBy="nombre"
+              placeholder="Seleccione"></p-dropdown>
+          </div>
+        </div>
+        <div class="flex col-6 gap-4 justify-content-end">
+          <button class="btn-filtros" (click)="filterForm.reset()"><span class="font-bold">Limpiar
+              filtros</span></button>
+          <button class="btn-filtros" (click)="filterIngreso()"><span class="font-bold">Filtrar</span></button>
+        </div>
+      </form>
+      <div class="my-4 w-full">
+        <p-table [value]="ingresos" [paginator]="true" [rows]="10" [showCurrentPageReport]="true"
+          [tableStyle]="{ 'min-width': '50rem' }"  [style]="{width:'100%'}"
+          currentPageReportTemplate="Mostrando {first} - {last} de {totalRecords}"
+          [rowsPerPageOptions]="[10, 25, 50]">
+          <ng-template pTemplate="header">
+            <tr>
+              <th scope="col">Producto</th>
+              <th scope="col">Cantidad</th>
+              <th scope="col">Fecha</th>
+              <th scope="col">Ingresado por</th>
+            </tr>
+          </ng-template>
+          <ng-template pTemplate="body" let-ingreso>
+            <tr>
+              <td>{{ ingreso.nombreproducto }}</td>
+              <td>{{ ingreso.cantidad }}</td>
+              <td>{{ ingreso.fecha }}</td>
+              <td>{{ ingreso.nombreusuario }}</td>
+            </tr>
+          </ng-template>
+          <ng-template pTemplate="emptymessage">
+            <tr *ngIf="hasFirstFilter">
+              <td [attr.colspan]="6">No hay registros</td>
+            </tr>
+          </ng-template>
+        </p-table>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+<p-dialog header="Nuevo producto" [(visible)]="showModal" [modal]="true" [style]="{ width: '70vw', padding: '0px' }" [draggable]="false"
+  [resizable]="false">
+  <form [formGroup]="productoFilterForm" class="grid grid-nogutter mt-4 col-12">
+    <div class="flex col-6 gap-4">
+      <div>
+        <label for="float-input" class="mr-2">Nombre</label>
+        <input id="float-input" type="text" pInputText formControlName="nombre"/>
+      </div>
+      <div>
+        <label for="categoria" class="mr-2">Categoria</label>
+        <p-dropdown id="categoria" formControlName="categoria_id" [options]="categorias" optionLabel="nombre" optionValue="id" [filter]="true" filterBy="nombre"
+          placeholder="Seleccione"></p-dropdown>
+      </div>
+    </div>
+    <div class="flex col-6 gap-4 justify-content-end">
+      <button class="btn-filtros" (click)="filterForm.reset()"><span class="font-bold">Limpiar
+          filtros</span></button>
+      <button class="btn-filtros" (click)="filterProducto()"><span class="font-bold">Filtrar</span></button>
+    </div>
+  </form>
+  <p class="text-xl font-bold mt-2">Productos</p>
+  <div class="my-4 w-full">
+    <p-table [value]="productos" [paginator]="true" [rows]="5" [showCurrentPageReport]="true"
+      [tableStyle]="{ 'min-width': '50rem' }"  [style]="{width:'100%'}"
+      currentPageReportTemplate="Mostrando {first} - {last} de {totalRecords}">
+      <ng-template pTemplate="header">
+        <tr>
+          <th scope="col">Nombre</th>
+          <th scope="col">Descripción</th>
+          <th scope="col">Stock</th>
+          <th scope="col">Estado</th>
+          <th scope="col">Categoria</th>
+          <th scope="col">Acciones</th>
+        </tr>
+      </ng-template>
+      <ng-template pTemplate="body" let-producto>
+        <tr>
+          <td>{{ producto.nombre }}</td>
+          <td [style.width]="'45%'">{{ producto.descripcion }}</td>
+          <td>{{ producto.cantidad }}</td>
+          <td>{{ producto.estado }}</td>
+          <td>{{ producto.categoria_nombre }}</td>
+          <td><i class="pi pi-plus text-xl cursor-pointer color-verde" (click)="addProduct(producto)"></i></td>
+        </tr>
+      </ng-template>
+      <ng-template pTemplate="emptymessage">
+        <tr *ngIf="hasFirstFilter">
+          <td [attr.colspan]="6">No hay registros</td>
+        </tr>
+      </ng-template>
+    </p-table>
+  </div>
+  <div class="barra"></div>
+  <p class="text-xl font-bold mt-2">Ingresos</p>
+  <div class="my-4 w-full">
+    <p-table [value]="ingresosAux" [paginator]="true" [rows]="5" [totalRecords]="ingresosAux.length" [showCurrentPageReport]="true"
+      [tableStyle]="{ 'min-width': '50rem' }"  [style]="{width:'100%'}"
+      currentPageReportTemplate="Mostrando {first} - {last} de {totalRecords}">
+      <ng-template pTemplate="header">
+        <tr>
+          <th scope="col">Nombre</th>
+          <th scope="col">Descripción</th>
+          <th scope="col">Categoria</th>
+          <th scope="col">Stock</th>
+          <th scope="col">Acciones</th>
+        </tr>
+      </ng-template>
+      <ng-template pTemplate="body" let-ingreso>
+        <tr>
+          <td>{{ ingreso.nombre }}</td>
+          <td [style.width]="'45%'">{{ ingreso.descripcion }}</td>
+          <td>{{ ingreso.categoria }}</td>
+          <td><span><i class="pi pi-minus text-sm color-secondary-dark mr-1 cursor-pointer" (click)="changeCantidad('-', ingreso)"></i></span>{{ ingreso.cantidad }}<span><i class="pi pi-plus text-sm color-secondary-dark ml-1 cursor-pointer" (click)="changeCantidad('+', ingreso)"></i></span></td>
+          <td><i class="pi pi-trash text-xl cursor-pointer color-rojo" (click)="removeIngreso(ingreso)"></i></td>
+        </tr>
+      </ng-template>
+      <ng-template pTemplate="emptymessage">
+        <tr *ngIf="hasFirstFilter">
+          <td [attr.colspan]="6">No hay registros</td>
+        </tr>
+      </ng-template>
+    </p-table>
+  </div>
+  <div class="mt-4 w-full text-center">
+    <button class="btn-filtros px-4 py-2" [ngClass]="ingresosAux.length <= 0 ? 'opacity-60' : ''" (click)="saveIngreso()" [disabled]="ingresosAux.length <= 0"><span class="font-bold">Registrar</span></button>
+  </div>
+</p-dialog>
+
+<p-toast></p-toast>
+<p-confirmDialog #cd [style]="{width: '30vw'}">
+  <ng-template pTemplate="footer">
+    <button type="button" pButton icon="pi pi-times" label="Cancelar" (click)="cd.reject()"></button>
+    <button type="button" pButton icon="pi pi-check" label="Confirmar" (click)="cd.accept()"></button>
+</ng-template>
+</p-confirmDialog>
+

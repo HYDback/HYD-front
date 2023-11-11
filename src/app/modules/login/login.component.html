@@ -16,7 +16,7 @@
         <button class="btn-general" [ngClass]="loginForm.invalid ? 'opacity-60' : ''" (click)="login()" [disabled]="loginForm.invalid"><span class="font-bold">Iniciar Sesión</span></button>
       </div>
       <div class="mt-6" *ngIf="credentialsInvalid">
-        <span>Usuario y/o contraseña invalidos</span>
+        <span>{{errorMessage}}</span>
       </div>
     </form>
   </div>

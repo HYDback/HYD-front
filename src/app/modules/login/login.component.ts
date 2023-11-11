@@ -15,7 +15,7 @@ export class LoginComponent implements OnInit{
   public value!: string;
   public showPassword: boolean = false;
   public credentialsInvalid: boolean = false;
-
+  public errorMessage = '';
   ngOnInit(): void {
     this.initForm();
     this.checkCredentials();
@@ -53,7 +53,7 @@ export class LoginComponent implements OnInit{
       },
       error: (error) => {
         this.credentialsInvalid = true;
-        console.log(error.error.Resp.message)
+        this.errorMessage = error.error.Resp.message;
       }
     })
   }

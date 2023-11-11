@@ -12,6 +12,7 @@ import { ConfirmationService, MessageService } from 'primeng/api';
 import { ConfirmDialogModule } from 'primeng/confirmdialog';
 import { ToastModule } from 'primeng/toast';
 import { KeyFilterModule } from 'primeng/keyfilter';
+import { CalendarModule } from 'primeng/calendar';
 
 @NgModule({
   declarations: [
@@ -29,7 +30,8 @@ import { KeyFilterModule } from 'primeng/keyfilter';
     errorTailorImports,
     ConfirmDialogModule,
     ToastModule,
-    KeyFilterModule
+    KeyFilterModule,
+    CalendarModule
   ],
   exports: [
     FormsModule,
@@ -44,7 +46,8 @@ import { KeyFilterModule } from 'primeng/keyfilter';
     errorTailorImports,
     ConfirmDialogModule,
     ToastModule,
-    KeyFilterModule
+    KeyFilterModule,
+    CalendarModule
   ],
   providers: [
     ConfirmationService,

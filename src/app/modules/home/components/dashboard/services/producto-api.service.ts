@@ -18,7 +18,7 @@ export class ProductApiService {
     return this.http.put<any>(`${ProductApiConstant.URL_PRODUCTS}`, producto)
   }
 
-  public getProductosByFilter(filter: string): Observable<any>  {
+  public getProductosByFilter(filter: any): Observable<any>  {
     return this.http.post<any>(`${ProductApiConstant.URL_PRODUCTS_FILTER}`, filter)
   }
 

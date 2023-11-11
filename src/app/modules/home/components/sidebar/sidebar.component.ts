@@ -36,6 +36,11 @@ export class SidebarComponent {
           path: 'clients',
           label: 'Gestionar Clientes',
           icon: 'pi pi-user',
+        },
+        {
+          path: 'operators',
+          label: 'Gestionar Operadores',
+          icon: 'pi pi-user',
         }
       ]
     },
@@ -50,12 +55,12 @@ export class SidebarComponent {
       },
       childrens: [
         {
-          path: '',
+          path: 'incomes',
           label: 'Gestionar Ingresos',
           icon: 'pi pi-sort-amount-up',
         },
         {
-          path: '',
+          path: 'expenses',
           label: 'Gestionar Egresos',
           icon: 'pi pi-sort-amount-down',
         }

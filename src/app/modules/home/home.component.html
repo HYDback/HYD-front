@@ -3,8 +3,6 @@
     <app-sidebar (state)="resize($event)"></app-sidebar>
     <div class="w-full" [ngClass]="state ? 'content-expanded' : 'content-minimized'">
       <router-outlet></router-outlet>
-      <p-toast></p-toast>
-      <p-confirmDialog [style]="{width: '50vw'}"></p-confirmDialog>
     </div>
   </div>
 </div>

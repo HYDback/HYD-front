@@ -4,6 +4,10 @@ import { RouterModule, Routes } from '@angular/router';
 import { DashboardComponent } from './dashboard.component';
 import { GestionarCategoriasComponent } from './components/gestionar-categorias/gestionar-categorias.component';
 import { GestionarProductosComponent } from './components/gestionar-productos/gestionar-productos.component';
+import { GestionarClientesComponent } from './components/gestionar-clientes/gestionar-clientes.component';
+import { GestionarIngresosComponent } from './components/gestionar-ingresos/gestionar-ingresos.component';
+import { GestionarEgresosComponent } from './components/gestionar-egresos/gestionar-egresos.component';
+import { GestionarOperadoresComponent } from './components/gestionar-operadores/gestionar-operadores.component';
 import { HomeComponent } from './components/home/home.component';
 import { RouterConstant } from 'src/app/constants/routes/router.constant';
 import { SharedModule } from 'src/app/shared/shared.module';
@@ -22,6 +26,22 @@ const routes: Routes = [
   {
     path: RouterConstant.ROUTER_PRODUCTS,
     component: GestionarProductosComponent
+  },
+  {
+    path: RouterConstant.ROUTER_CLIENTS,
+    component: GestionarClientesComponent
+  },
+  {
+    path: RouterConstant.ROUTER_INGRESOS,
+    component: GestionarIngresosComponent
+  },
+  {
+    path: RouterConstant.ROUTER_EGRESOS,
+    component: GestionarEgresosComponent
+  },
+  {
+    path: RouterConstant.ROUTER_OPERADORES,
+    component: GestionarOperadoresComponent
   }
 ]
 
@@ -30,7 +50,11 @@ const routes: Routes = [
     DashboardComponent,
     GestionarCategoriasComponent,
     GestionarProductosComponent,
-    HomeComponent
+    HomeComponent,
+    GestionarClientesComponent,
+    GestionarIngresosComponent,
+    GestionarEgresosComponent,
+    GestionarOperadoresComponent
   ],
   imports: [
     CommonModule,
