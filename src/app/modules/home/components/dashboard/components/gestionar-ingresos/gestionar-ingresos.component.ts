@@ -115,7 +115,7 @@ export class GestionarIngresosComponent {
 
   saveIngreso(): void {
     this.confirmationService.confirm({
-      message: '¿Está seguro que desea crear el producto?',
+      message: '¿Está seguro que desea crear el ingreso?',
       header: 'Confirmación',
       icon: 'pi pi-exclamation-triangle',
       accept: () => {

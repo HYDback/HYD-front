@@ -71,7 +71,7 @@ export class GestionarClientesComponent {
 
   saveCliente(): void {
     this.confirmationService.confirm({
-      message: '¿Está seguro que desea crear el producto?',
+      message: '¿Está seguro que desea crear el cliente?',
       header: 'Confirmación',
       icon: 'pi pi-exclamation-triangle',
       accept: () => {
