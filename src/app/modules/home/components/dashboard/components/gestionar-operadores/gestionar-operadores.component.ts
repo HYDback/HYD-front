@@ -72,7 +72,7 @@ export class GestionarOperadoresComponent {
 
   saveOperador(): void {
     this.confirmationService.confirm({
-      message: '¿Está seguro que desea crear el producto?',
+      message: '¿Está seguro que desea crear el operador?',
       header: 'Confirmación',
       icon: 'pi pi-exclamation-triangle',
       accept: () => {

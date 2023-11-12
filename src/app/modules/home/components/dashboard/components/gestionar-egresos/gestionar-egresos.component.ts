@@ -134,7 +134,7 @@ export class GestionarEgresosComponent {
 
   saveEgreso(): void {
     this.confirmationService.confirm({
-      message: '¿Está seguro que desea crear el producto?',
+      message: '¿Está seguro que desea crear el egreso?',
       header: 'Confirmación',
       icon: 'pi pi-exclamation-triangle',
       accept: () => {

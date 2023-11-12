@@ -58,7 +58,7 @@ export class GestionarCategoriasComponent {
         this.categorias = data.Resp.data;
       },
       error: (error) => {
-        this.messageService.add({ severity: 'error', summary: 'Error', detail: 'No se ha podido cargar los registros' });
+        this.messageService.add({ severity: 'error', summary: 'Error', detail: 'No se ha podido cargar las categorias' });
       }
     })
   }
