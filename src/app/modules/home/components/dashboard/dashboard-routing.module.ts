@@ -8,6 +8,7 @@ import { GestionarClientesComponent } from './components/gestionar-clientes/gest
 import { GestionarIngresosComponent } from './components/gestionar-ingresos/gestionar-ingresos.component';
 import { GestionarEgresosComponent } from './components/gestionar-egresos/gestionar-egresos.component';
 import { GestionarOperadoresComponent } from './components/gestionar-operadores/gestionar-operadores.component';
+import { GestionarReportesComponent } from './components/gestionar-reportes/gestionar-reportes.component';
 import { HomeComponent } from './components/home/home.component';
 import { RouterConstant } from 'src/app/constants/routes/router.constant';
 import { SharedModule } from 'src/app/shared/shared.module';
@@ -42,6 +43,10 @@ const routes: Routes = [
   {
     path: RouterConstant.ROUTER_OPERADORES,
     component: GestionarOperadoresComponent
+  },
+  {
+    path: RouterConstant.ROUTER_REPORTES,
+    component: GestionarReportesComponent
   }
 ]
 
@@ -54,7 +59,8 @@ const routes: Routes = [
     GestionarClientesComponent,
     GestionarIngresosComponent,
     GestionarEgresosComponent,
-    GestionarOperadoresComponent
+    GestionarOperadoresComponent,
+    GestionarReportesComponent
   ],
   imports: [
     CommonModule,

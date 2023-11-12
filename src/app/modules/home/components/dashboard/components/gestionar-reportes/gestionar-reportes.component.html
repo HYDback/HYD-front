@@ -1,0 +1,84 @@
+<div class="w-full px-4">
+  <div class="w-full shadow-4 border-round-xl mt-4">
+    <div class="w-full header bg-primary-hyd py-3 border-round-top-xl color-blanco px-4">
+      <span class="text-4xl font-bold">Generar Reportes</span>
+    </div>
+    <div class="px-4 mt-4">
+      <div class="flex justify-content-between">
+        <span class="text-xl font-bold">Filtros</span>
+      </div>
+      <form [formGroup]="filterForm" class="grid grid-nogutter mt-4 col-12">
+        <div class="flex col-6 gap-4">
+          <div>
+            <label for="tipo" class="mr-2">Tipo Reporte</label>
+            <p-dropdown id="tipo" formControlName="tipo" [options]="tipos" optionLabel="label" optionValue="label"
+              placeholder="Seleccione" (onChange)="clearTable()"></p-dropdown>
+          </div>
+          <div>
+            <label for="dateIni" class="mr-2">Fecha inicio</label>
+            <p-calendar id="dateIni" formControlName="dateIni"></p-calendar>
+          </div>
+          <div>
+            <label for="dateFin" class="mr-2">Fecha fin</label>
+            <p-calendar id="dateFin" formControlName="dateFin"></p-calendar>
+          </div>
+          <div>
+            <label for="producto_id" class="mr-2">Producto</label>
+            <p-dropdown id="producto_id" formControlName="producto_id" [options]="productos" optionLabel="nombre" [filter]="true" filterBy="nombre"
+              optionValue="id" placeholder="Seleccione"></p-dropdown>
+          </div>
+          <div *ngIf="filterForm.controls['tipo'].value == 'Egresos'">
+            <label for="cliente_id" class="mr-2">Cliente</label>
+            <p-dropdown id="cliente_id" formControlName="cliente_id" [options]="clientes" optionLabel="nombre" [filter]="true" filterBy="nombre"
+              optionValue="cedula" placeholder="Seleccione"></p-dropdown>
+          </div>
+        </div>
+        <div class="flex col-6 gap-4 justify-content-end">
+          <button class="btn-filtros" (click)="filterForm.reset()"><span class="font-bold">Limpiar
+              filtros</span></button>
+          <button class="btn-filtros" (click)="filterReportes()" [ngClass]="{'opacity-60': filterForm.invalid}" [disabled]="filterForm.invalid"><span class="font-bold">Filtrar</span></button>
+        </div>
+      </form>
+      <div class="my-4 w-full">
+        <div class="button-pdf mb-4 flex align-items-center justify-content-center" (click)="generarReporte()">
+          <i class="pi pi-file-pdf text-xl color-secondary-dark"></i>
+        </div>
+        <p-table [value]="reportes" [paginator]="true" [rows]="10" [showCurrentPageReport]="true"
+          [tableStyle]="{ 'min-width': '50rem' }" [style]="{width:'100%'}"
+          currentPageReportTemplate="Mostrando {first} - {last} de {totalRecords}" [rowsPerPageOptions]="[10, 25, 50]">
+          <ng-template pTemplate="header">
+            <tr>
+              <th scope="col">Producto</th>
+              <th scope="col">Cantidad</th>
+              <th scope="col">Fecha</th>
+              <th scope="col">Ingresado por</th>
+              <th scope="col" *ngIf="filterForm.controls['tipo'].value == 'Egresos'">Cliente</th>
+            </tr>
+          </ng-template>
+          <ng-template pTemplate="body" let-reporte>
+            <tr>
+              <td>{{ reporte.nombreproducto }}</td>
+              <td>{{ reporte.cantidad }}</td>
+              <td>{{ reporte.fecha }}</td>
+              <td>{{ reporte.nombreusuario }}</td>
+              <td *ngIf="filterForm.controls['tipo'].value == 'Egresos'">{{ reporte.nombrecliente }}</td>
+            </tr>
+          </ng-template>
+          <ng-template pTemplate="emptymessage">
+            <tr *ngIf="hasFirstFilter">
+              <td [attr.colspan]="6">No hay registros</td>
+            </tr>
+          </ng-template>
+        </p-table>
+      </div>
+    </div>
+  </div>
+</div>
+
+<p-toast></p-toast>
+<p-confirmDialog #cd [style]="{width: '30vw'}">
+  <ng-template pTemplate="footer">
+    <button type="button" pButton icon="pi pi-times" label="Cancelar" (click)="cd.reject()"></button>
+    <button type="button" pButton icon="pi pi-check" label="Confirmar" (click)="cd.accept()"></button>
+  </ng-template>
+</p-confirmDialog>

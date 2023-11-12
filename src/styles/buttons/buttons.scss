@@ -24,3 +24,18 @@
     background-color: var(--color-secondary-dark-hyd);
   }
 }
+
+.button-pdf{
+  border: 1px solid var(--color-secondary-dark-hyd);
+  width: 45px;
+  height: 45px;
+  border-radius: 10px;
+  background-color: #ffffff;
+  cursor: pointer;
+  &:hover {
+    background-color: var(--color-secondary-dark-hyd);
+    & i{
+      color: #ffffff;
+    }
+  }
+}

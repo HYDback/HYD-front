@@ -45,6 +45,7 @@
               <th scope="col">Cantidad</th>
               <th scope="col">Fecha</th>
               <th scope="col">Ingresado por</th>
+              <th scope="col">Cliente</th>
             </tr>
           </ng-template>
           <ng-template pTemplate="body" let-egreso>
@@ -53,6 +54,7 @@
               <td>{{ egreso.cantidad }}</td>
               <td>{{ egreso.fecha }}</td>
               <td>{{ egreso.nombreusuario }}</td>
+              <td>{{ egreso.nombrecliente }}</td>
             </tr>
           </ng-template>
           <ng-template pTemplate="emptymessage">

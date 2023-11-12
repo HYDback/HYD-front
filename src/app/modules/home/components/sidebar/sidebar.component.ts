@@ -1,4 +1,4 @@
-import { Component, EventEmitter, Output } from '@angular/core';
+import { Component, EventEmitter, OnInit, Output } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 
 @Component({
@@ -6,11 +6,20 @@ import { ActivatedRoute, Router } from '@angular/router';
   templateUrl: './sidebar.component.html',
   styleUrls: ['./sidebar.component.scss']
 })
-export class SidebarComponent {
+export class SidebarComponent implements OnInit{
   constructor(private router: Router, private route: ActivatedRoute){}
+  ngOnInit(): void {
+    setTimeout(() => {
+      const tipoUsuario = JSON.parse(sessionStorage.getItem('AUTH')!).tipo;
+      this.nombreUsuario = JSON.parse(sessionStorage.getItem('AUTH')!).nick;
+      this.visible = 'Administrador' == tipoUsuario;
+    }, 100);
+  }
   @Output() state = new EventEmitter();
   public isExpanded = false;
   public showButtons = false;
+  public visible = false;
+  public nombreUsuario = '';
   public buttons = [
     {
       id: 1,
@@ -26,21 +35,25 @@ export class SidebarComponent {
           path: 'categories',
           label: 'Gestionar Categorias',
           icon: 'pi pi-chart-bar',
+          visible: true,
         },
         {
           path: 'products',
           label: 'Gestionar Productos',
           icon: 'pi pi-table',
+          visible: true,
         },
         {
           path: 'clients',
           label: 'Gestionar Clientes',
           icon: 'pi pi-user',
+          visible: true,
         },
         {
           path: 'operators',
           label: 'Gestionar Operadores',
           icon: 'pi pi-user',
+          visible: true,
         }
       ]
     },
@@ -58,11 +71,13 @@ export class SidebarComponent {
           path: 'incomes',
           label: 'Gestionar Ingresos',
           icon: 'pi pi-sort-amount-up',
+          visible: true,
         },
         {
           path: 'expenses',
           label: 'Gestionar Egresos',
           icon: 'pi pi-sort-amount-down',
+          visible: true,
         }
       ]
     },
@@ -77,9 +92,10 @@ export class SidebarComponent {
       },
       childrens: [
         {
-          path: '',
+          path: 'reports',
           label: 'Generar reportes',
           icon: 'pi pi-chart-line',
+          visible: true,
         },
       ]
     }
