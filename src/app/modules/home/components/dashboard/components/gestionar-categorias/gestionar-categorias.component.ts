@@ -24,6 +24,7 @@ export class GestionarCategoriasComponent {
     { id: 2, label: 'INACTIVO' }
   ]
   public showModal: boolean = false;
+  public hasFirstFilter: boolean = false;
 
   public categorias = [];
 
@@ -53,6 +54,7 @@ export class GestionarCategoriasComponent {
   }
 
   filterCategoria(): void {
+    this.hasFirstFilter = true;
     this.categoriaApiService.getCategoriasByFilter(this.dashboardApiService.getParams(this.filterForm.value)).subscribe({
       next: (data) => {
         this.categorias = data.Resp.data;

@@ -47,6 +47,11 @@
               <td><i class="pi pi-eye text-xl cursor-pointer" [ngClass]="categoria.estado == 'ACTIVO' ? 'color-verde' : 'color-rojo'" (click)="updateCategoria(categoria)"></i></td>
             </tr>
           </ng-template>
+          <ng-template pTemplate="emptymessage">
+            <tr *ngIf="hasFirstFilter">
+              <td [attr.colspan]="6">No hay registros</td>
+            </tr>
+          </ng-template>
         </p-table>
       </div>
     </div>

@@ -28,7 +28,7 @@
               optionValue="id" placeholder="Seleccione"></p-dropdown>
           </div>
           <div *ngIf="filterForm.controls['tipo'].value == 'Egresos'">
-            <label for="cliente_id" class="mr-2">Cliente</label>
+            <label for="cliente_id" class="mr-3" style="margin-right: -13rem !important;">Cliente</label>
             <p-dropdown id="cliente_id" formControlName="cliente_id" [options]="clientes" optionLabel="nombre" [filter]="true" filterBy="nombre"
               optionValue="cedula" placeholder="Seleccione"></p-dropdown>
           </div>
